@@ -3,9 +3,24 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Vue Tab</title>
+	<style>
+		[v-cloak] {
+			display: none;
+		}
+
+		.tab-nav {
+			list-style: none;
+		}
+
+		.tab-nav li{
+			display: inline-block;
+			margin-left: 10px;
+			background-color: #ccc;
+		}
+	</style>
 </head>
 <body>
-	<div id="app">
+	<div id="app" v-cloak>
 		<vue-tabs active="1">
 			<tab title="zhang">张</tab>
 			<tab title="kai">楷</tab>

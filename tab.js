@@ -7,20 +7,14 @@ Vue.component('tab', {
 
 	computed: {
 		show: function() {
-			console.log(this.$parent.$target, '.....index', this.index);
-			return this.$parent.$target === this.index;
+			console.log(this.$parent.target, '.....index', this.index);
+			return this.$parent.target == this.index;
 		}
 	},
 
 	data: function() {
 		return {
 			index: ''
-		}
-	},
-
-	watch: {
-		'$parent.$target': function() {
-			console.log('.///watch')
 		}
 	},
 
@@ -43,13 +37,7 @@ Vue.component('vue-tabs', {
 	data: function() {
 		return {
 			tabList: [],
-			$target: 0
-		}
-	},
-
-	computed: {
-		test: function() {
-			return this.$target - 1;
+			target: 0
 		}
 	},
 
@@ -58,21 +46,18 @@ Vue.component('vue-tabs', {
 			<li @click="toggle(i)" v-for="(tab, i) in tabList">{{ tab.title }}</li>
 		</ul>
 		<div class="tab-content">
-			{{ test }}
-			{{ $target }}
 			<slot></slot>
 		</div>
 	</div>`,
 
 	methods: {
 		toggle: function(index) {
-			this.$target = index;
-			debugger;
+			this.target = index;
 		}
 	},
 
 	created: function() {
-		this.$target = this.active;
+		this.target = this.active;
 	},
 
 	mounted: function() {
