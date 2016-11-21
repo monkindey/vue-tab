@@ -7,8 +7,7 @@ Vue.component('tab', {
 
 	computed: {
 		show: function() {
-			console.log(this.$parent.target, '.....index', this.index);
-			return this.$parent.target == this.index;
+			return this.$parent.current == this.index;
 		}
 	},
 
@@ -37,13 +36,13 @@ Vue.component('vue-tabs', {
 	data: function() {
 		return {
 			tabList: [],
-			target: 0
+			current: 0
 		}
 	},
 
 	template: `<div class="vue-tabs">
 		<ul class="tab-nav">
-			<li @click="toggle(i)" v-for="(tab, i) in tabList">{{ tab.title }}</li>
+			<li :class="{ active: current == i }" @click="toggle(i)" v-for="(tab, i) in tabList">{{ tab.title }}</li>
 		</ul>
 		<div class="tab-content">
 			<slot></slot>
@@ -52,12 +51,12 @@ Vue.component('vue-tabs', {
 
 	methods: {
 		toggle: function(index) {
-			this.target = index;
+			this.current = index;
 		}
 	},
 
 	created: function() {
-		this.target = this.active;
+		this.current = this.active;
 	},
 
 	mounted: function() {
